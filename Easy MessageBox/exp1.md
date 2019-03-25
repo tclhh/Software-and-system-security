@@ -1,10 +1,11 @@
-## exp1
+# Easy MessageBox
+
 
 **题目要求**: 编写一个release版本的 hello world 程序。通过修改程序可执行文件的方式（不是修改源代码），使得程序运行后显示的内容不为`hello world`，变成 `hello cuc！`（hint：一定要在编译选项中将调试信息相关的编译连接选项去掉，否则程序体积会比较大，而且存在很多“干扰”信息。)
 
 
 
-### 0x00 编写实验使用的 C 语言程序
+## 0x00 编写实验使用的 C 语言程序
 
 实验源代码如下:
 
@@ -37,11 +38,11 @@ link /nologo /ENTRY:main /NODEFAULTLIB /SUBSYSTEM:WINDOWS /ALIGN:16 test.obj use
 
 查看产生的 `.exe` 文件:
 
-![dir](image\dir.jpg)
+![dir](image/dir.jpg)
 
 
 
-### 0x01 更改显示字符串
+## 0x01 更改显示字符串
 
 直接使用 `WinHex` 打开 `test.exe`文件，使用快捷键 `ctrl+h`替换文本：
 
