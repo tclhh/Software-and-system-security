@@ -28,7 +28,7 @@
 
 在 `MSDN` 中找到 `RtlAllocateHeap` 函数原型：
 
-```
+```C
 NTSYSAPI PVOID RtlAllocateHeap(
   PVOID  HeapHandle,
   ULONG  Flags,
