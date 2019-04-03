@@ -1,6 +1,6 @@
-## Edit Notepad
+# Edit Notepad
 
-**实验要求：**在notepad（32位64位均可）中，输入一段文字。然后使用调试器，在内存中修改这段文字。使得没有在界面操作notepad的修改文字的情况下。notepad中显示的文字变化。(提示，在调试器中定位控件缓存的内存地址，可以用搜索、逆向、消息截获分析、API截获分析等方法。)
+**实验要求**: 在notepad（32位64位均可）中，输入一段文字。然后使用调试器，在内存中修改这段文字。使得没有在界面操作notepad的修改文字的情况下。notepad中显示的文字变化。(提示，在调试器中定位控件缓存的内存地址，可以用搜索、逆向、消息截获分析、API截获分析等方法。)
 
 
 
@@ -12,7 +12,7 @@
 
 
 
-### 0x00 查找堆
+## 0x00 查找堆
 
 首先打开 `notepad.exe` ，在 `notepad` 中输入`hello world!`, `od`中选择 `attach` 附加到 `notepad.exe` 进程。    
 
@@ -60,7 +60,7 @@ Handle for a private heap from which the memory will be allocated. This paramete
 
 
 
-### 0x01 修改数据
+## 0x01 修改数据
 
 进入到 `0x03330000` 地址处，因为堆区块前面的内容大致就是：
 
@@ -85,7 +85,7 @@ Handle for a private heap from which the memory will be allocated. This paramete
 
 
 
-### 0x02 运行
+## 0x02 运行
 
 修改完数据，`ALT - C` 跳转，然后使用 `CTRL - F8` 逐条执行，结果如下：
 
@@ -95,19 +95,19 @@ Handle for a private heap from which the memory will be allocated. This paramete
 
 
 
-### 0x03 实验时的问题
+## 0x03 实验时的问题
 
-[1].  `RtlAllocateHeap` 下断之后别用 `F4` 运行至光标处，很容易报错。
+-  `RtlAllocateHeap` 下断之后别用 `F4` 运行至光标处，很容易报错。
 
-[2].  调试时经常遇到 `...set single step flag(bit T in EFL)...` 这个弹窗，只要在弹窗的地方的下一条语句处下断 或 `F4` ，即可解决。
+-  调试时经常遇到 `...set single step flag(bit T in EFL)...` 这个弹窗，只要在弹窗的地方的下一条语句处下断 或 `F4` 即可解决。
 
-[3]. 改完字符串后一定不要使用 `F9` 运行，进程运行很快，并且会无故退出，观察不到实验结果。可以尝试在 `PostMessage` 和 `TranslateAcceleratorw` 处下断 `F9` 运行。
+- 改完字符串后一定不要使用 `F9` 运行，进程运行很快，并且会无故退出，观察不到实验结果。可以尝试在 `PostMessage` 和 `TranslateAcceleratorw` 处下断 `F9` 运行。
 
-[4]. `od` 调试的失败率很高，大概 100 次 成功 2 次，可能是因为本人使用 `od` 不熟练。
+- `od` 调试的失败率很高，大概 100 次 成功 2 次，可能是因为本人使用 `od` 不熟练。
 
 
 
-### 0x04 更换工具    
+## 0x04 更换工具    
 
 使用 `WinDbg` 尝试实验。首先还是查找堆的位置：
 
@@ -151,12 +151,12 @@ g
 
 实验成功。暂时以个人的观点，简单对比一下 `od` 和 `WinDbg` ：
 
-[1].  查阅资料得知，`od` 只能调 32 位程序（不知真假...）
+-  查阅资料得知，`od` 只能调 32 位程序（不知真假...）
 
-[2]. `od` 调试多线程要手动切换。
+- `od` 调试多线程要手动切换。
 
-[3]. `Windbg` 实验成功率高。
+- `Windbg` 实验成功率高。
 
-[4]. `od` 的实验窗口更清晰，不需要手动输入指令查询。
+- `od` 的实验窗口更清晰，不需要手动输入指令查询。
 
-[5]. `Windbg` 命令查堆很方便。( **听说** `od` 也有堆查询的插件 ) 
+- `Windbg` 命令查堆很方便。( **听说** `od` 也有堆查询的插件 ) 
